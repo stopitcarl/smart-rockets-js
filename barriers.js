@@ -1,13 +1,12 @@
-function Polygon(x, y) {
+function Polygon() {
     this.vectors = [];
     this.finished = false;
     this.c = color(85, 245, 120);
 
 
-    this.addVertex = function(x, y) {
-        this.vectors.push(createVector(x, y));
+    this.addVertex = function(vect) {
+        this.vectors.push(vect);
     }
-    this.addVertex(x, y);
 
     this.complete = function() {
         this.finished = true;
