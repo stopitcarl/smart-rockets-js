@@ -2,7 +2,7 @@ var population;
 var lifespan = 400; // Each rocket is alive 400 frames
 var lifeP; // Made to display count on screen
 var count = 0; // Keeps track of frames
-var target; // Where rockets are trying to go
+
 var maxforce = 0.2; // Max force applied to rocket
 
 var barriers = [];
@@ -14,64 +14,75 @@ var ry = 150;
 var rw = 200;
 var rh = 10;
 
+// target
+var target; // Where rockets are trying to go
+var target_diameter = 10;
+var target_color;
+
+
 // Mouse
 var mouse;
+var mouse_diameter = 10;
+var mouse_color;
 var active_point = null;
-var epsilon = 30; // distance untill it snaps to nearest point
+var epsilon = 18; // distance untill it snaps to nearest point
 var snapped = false; // true if mouse is snapped to enarest point
 
 
 function setup() {
     createCanvas(900, 600);
+    rectMode(CENTER);
+
     population = new Population();
     lifeP = createP();
     target = createVector(width / 2, 50);
-    mouse = createVector(mouseX, mouseY);
+    target_color = color(240, 28, 60);
     current_b = new Polygon();
+    mouse = createVector(mouseX, mouseY);
+    mouse_color = color(100, 78, 200);
 }
 
 
 function draw() {
     background(0);
-    population.run();
+
     // Displays count to window
     lifeP.html(count);
-
-    count++;
     if (count == lifespan) {
         population.evaluate();
         population.selection();
-        // Population = new Population();
+        // Population = new Population(); <-- deprecated way of starting new population
         count = 0;
     }
     mouseUpdate();
-    drawStuff();
+
+
+    drawMap();
+    population.run();
+    count++;
 }
 
 
-function drawStuff() {
+function drawMap() {
     // Render mouse
     strokeWeight(5);
     stroke(0, 50, 240);
-    ellipse(mouse.x, mouse.y, 50);
+    ellipse(mouse.x, mouse.y, 10);
 
     // Render constructing lines
     if (active_point != null) {
         line(active_point.x, active_point.y, mouse.x, mouse.y);
     }
 
-
-    // Renders barrier for rockets
+    // Render barriers
     fill(255);
     current_b.show();
-    rect(rx, ry, rw, rh);
-
     for (var i = 0; i < barriers.length; i++) {
         barriers[i].show();
     }
 
     // Renders target
-    ellipse(target.x, target.y, 16, 16);
+    ellipse(target.x, target.y, target_diameter);
 }
 
 
@@ -88,9 +99,8 @@ function mousePressed() {
     }
 }
 
-
+// Enables mouse snap-in to nearest point
 function mouseUpdate() {
-
     mouse = createVector(mouseX, mouseY);
     snapped = false;
     for (var i = 0; i < current_b.vectors.length; i++) {
@@ -100,5 +110,4 @@ function mouseUpdate() {
             break;
         }
     }
-
 }
