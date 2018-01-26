@@ -8,11 +8,9 @@ var maxforce = 0.2; // Max force applied to rocket
 var barriers = [];
 var current_b;
 
-// barriers and environment
-var rx = 100;
-var ry = 150;
-var rw = 200;
-var rh = 10;
+// dna
+mutation_prob = 0.01;
+
 
 // target
 var target; // Where rockets are trying to go
@@ -40,6 +38,7 @@ function setup() {
     current_b = new Polygon();
     mouse = createVector(mouseX, mouseY);
     mouse_color = color(100, 78, 200);
+
 }
 
 
@@ -87,6 +86,16 @@ function drawMap() {
 
 
 function mousePressed() {
+    if (mouseButton == RIGHT) {
+        if (active_point != null) {
+            current_b = new Polygon(); // restart the current barrier
+            active_point = null;
+
+        } else {
+            barriers.pop() // delete most recent barrier
+        }
+        return;
+    }
 
     current_b.addVertex(mouse);
     active_point = mouse;
