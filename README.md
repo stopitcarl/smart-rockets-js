@@ -14,7 +14,7 @@ An ongoing implementation of a genetic evolution to simple 2D rockets with map b
 
 2 - Wait and see the rockets adapt and find a way to the target - rockets need more generations to solve harder maps!
 
-3 - Remember to make maps progressively harder, each new generation is only slightly different than the one before.
+3 - Remember to make maps progressively harder, each new generation is only slightly better than the one before.
   
 
 ### Future changes
