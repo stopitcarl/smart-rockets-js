@@ -4,17 +4,14 @@ An ongoing implementation of a genetic evolution to simple 2D rockets with map b
 
 ### Getting Started
  https://stopitcarl.github.io/smart-rockets-js/
- 
-    or
- 
+ or 
  Clone or download the repository and open the index.html file with your favourite browser. 
 
 ### How it works
 1- Use the mouse to build polygons that will act as barriers between the rockets and their target.
 
 2 - Wait and see the rockets adapt and find a way to the target - rockets need more generations to solve harder maps!
-
-3 - Remember to make maps progressively harder, each new generation is only slightly better than the one before.
+ Remember to make maps progressively harder, each new generation is only slightly better than the one before.
   
 
 ### Future changes
