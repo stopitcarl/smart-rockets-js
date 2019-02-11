@@ -1,6 +1,6 @@
 function Rocket(dna) {
     // Physics of rocket at current instance
-    this.pos = createVector(width / 2, height);
+    this.pos = createVector(20, height / 2);
     this.vel = createVector();
     this.acc = createVector();
     this.width = 5;
@@ -21,11 +21,11 @@ function Rocket(dna) {
     this.fitness = 0;
 
     // rocket can receive force and add to acceleration
-    this.applyForce = function(force) {
+    this.applyForce = function (force) {
         this.acc.add(force);
     }
     // Calulates fitness of rocket
-    this.calcFitness = function() {
+    this.calcFitness = function () {
         // Takes distance to target
         var d = dist(this.pos.x, this.pos.y, target.x, target.y);
 
@@ -40,10 +40,10 @@ function Rocket(dna) {
             this.fitness /= 10;
         }
     }
-    // Updates state of rocket
-    this.update = function() {
-		
-        // Checks distance from rocket to target
+    // Update state of rocket
+    this.update = function () {
+
+        // Check distance from rocket to target
         var d = this.pos.dist(target);
 
         // If distance less than target diameter, then it has reached target
@@ -63,7 +63,7 @@ function Rocket(dna) {
             // Rocket has hit user made barrier
         } else {
             for (var i = 0; i < barriers.length; i++) {
-                if (collideRectPoly(this.pos.x, this.pos.y, this.width, this.height, barriers[i].vectors)) {
+                if (collideRectPoly(this.pos.x, this.pos.y, this.width, this.height, barriers[i].vertices)) {
                     this.crashed = this.stuck = true;
                     break;
                 }
@@ -71,7 +71,7 @@ function Rocket(dna) {
         }
 
 
-        // applies the vector defined in dna to rocket
+        // apply the vector defined in dna to rocket
         this.applyForce(this.dna.genes[count]);
 
         // if rocket has not got to goal and not crashed then update physics engine
@@ -82,8 +82,8 @@ function Rocket(dna) {
             //this.vel.limit(4);
         }
     }
-    // displays rocket to canvas
-    this.show = function() {
+    // display rocket to canvas
+    this.show = function () {
         // push and pop allows rotating and translation not to affect other objects
         push();
         // color customization of rockets

@@ -1,5 +1,6 @@
 function DNA(genes) {
-    // Recieves genes and create a dna object
+
+    // Receive genes and create a dna object
     if (genes) {
         this.genes = genes;
     }
@@ -7,16 +8,16 @@ function DNA(genes) {
     else {
         this.genes = [];
         for (var i = 0; i < lifespan; i++) {
-            // Gives random vectors
+            // Create random vectors
             this.genes[i] = p5.Vector.random2D();
-            // Sets maximum force of vector to be applied to a rocket
+            // Set maximum force of vector to be applied to a rocket
             this.genes[i].setMag(maxforce);
         }
     }
-    // Performs a crossover with another member of the species
-    this.crossover = function(partner) {
+    // Perform a crossover with another member of the species
+    this.crossover = function (partner) {
         var newgenes = [];
-        // Picks random midpoint
+        // Pick random midpoint
         var mid = floor(random(this.genes.length));
         for (var i = 0; i < this.genes.length; i++) {
             // If i is greater than mid the new gene should come from this partner
@@ -28,12 +29,12 @@ function DNA(genes) {
                 newgenes[i] = partner.genes[i];
             }
         }
-        // Gives DNA object an array
+        // Give DNA object an array
         return new DNA(newgenes);
     }
 
-    // Adds random mutation to the genes to add variance.
-    this.mutation = function() {
+    // Add random mutation to the genes to add variance.
+    this.mutation = function () {
         for (var i = 0; i < this.genes.length; i++) {
             // if random number less than 0.01, new gene is then random vector
             if (random() < mutation_prob) {

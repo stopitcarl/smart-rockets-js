@@ -3,33 +3,33 @@
 <head>
     <meta charset="UTF-8">
 
-    <!-- PLEASE NO CHANGES BELOW THIS LINE (UNTIL I SAY SO) -->
-  <script language="javascript" type="text/javascript" src="libraries/p5.js"></script>
-  <script language="javascript" type="text/javascript" src="libraries/p5.collide2d.js"></script>
-  <script language="javascript" type="text/javascript" src="libraries/p5.dom.js"></script>
-  <script language="javascript" type="text/javascript" src="barriers.js"></script>
-  <script language="javascript" type="text/javascript" src="dna.js"></script>
-  <script language="javascript" type="text/javascript" src="p5.collide2d.js"></script>
-  <script language="javascript" type="text/javascript" src="population.js"></script>
-  <script language="javascript" type="text/javascript" src="rocket.js"></script>
-  <script language="javascript" type="text/javascript" src="smart_rockets.js"></script>
-  <!-- OK, YOU CAN MAKE CHANGES BELOW THIS LINE AGAIN -->
 
-  <script>document.oncontextmenu = function() {
-    return false;
-}</script>
+    <script language="javascript" type="text/javascript" src="scripts/libraries/p5.js"></script>
+    <script language="javascript" type="text/javascript" src="scripts/libraries/p5.collide2d.js"></script>
+    <script language="javascript" type="text/javascript" src="scripts/libraries/p5.dom.js"></script>
+    <script language="javascript" type="text/javascript" src="scripts/libraries/Chart.js"></script>
+    <script language="javascript" type="text/javascript" src="scripts/barrier.js"></script>
+    <script language="javascript" type="text/javascript" src="scripts/dna.js"></script>
+    <script language="javascript" type="text/javascript" src="scripts/main.js"></script>
+    <script language="javascript" type="text/javascript" src="scripts/mouse.js"></script>
+    <script language="javascript" type="text/javascript" src="scripts/population.js"></script>
+    <script language="javascript" type="text/javascript" src="scripts/rocket.js"></script>
 
-    <!-- This line removes any default padding and style.
-       You might only need one of these values set. -->
-    <style>
-        body {
-            padding: 0;
-            margin: 0;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <title>Smart Rockets by JPorto</title>
 </head>
 
-<body>
+<body oncontextmenu="return false;">
+
+    <div id="vertical-box">
+        <div id="sketch-holder">
+        </div>
+        <div id="chart-holder" height="200px">
+            <canvas id="line-chart"></canvas>
+        </div>
+    </div>
+    <script language="javascript" type="text/javascript" src="scripts/data.js"></script>
 </body>
 
 </html>

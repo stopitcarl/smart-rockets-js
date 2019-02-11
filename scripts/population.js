@@ -1,4 +1,5 @@
 function Population() {
+
     // Array of rockets
     this.rockets = [];
     // Amount of rockets
@@ -7,27 +8,28 @@ function Population() {
     this.matingpool = [];
 
     // Associates a rocket to an array index
-    for (var i = 0; i < this.popsize; i++) {
+    for (var i = 0; i < this.popsize; i++)
         this.rockets[i] = new Rocket();
-    }
 
-    this.evaluate = function() {
+
+    this.evaluate = function () {
 
         var maxfit = 0;
-        var target_hitters = 0
+        var target_hitters = 0;
         // Iterate through all rockets and calcultes their fitness
         for (var i = 0; i < this.popsize; i++) {
             // Calculates fitness
             this.rockets[i].calcFitness();
-            if (this.rockets[i].completed) {
-                target_hitters++;
-            }
-            // If current fitness is greater than max, then make max equal to current
+            // Get the max fitness achieved
             if (this.rockets[i].fitness > maxfit) {
                 maxfit = this.rockets[i].fitness;
             }
+            // Count how many rockets hit the target
+            if (this.rockets[i].completed) {
+                target_hitters++;
+            }
         }
-        console.log(target_hitters)
+
         // Normalises fitnesses
         for (var i = 0; i < this.popsize; i++) {
             this.rockets[i].fitness /= maxfit;
@@ -35,16 +37,18 @@ function Population() {
 
         this.matingpool = [];
         // Take rockets fitness make in to scale of 1 to 100
-        // A rocket with high fitness will highly likely will be in the mating pool
+        // Rockets with higher fitness will have more success in the mating pool
         for (var i = 0; i < this.popsize; i++) {
             var n = this.rockets[i].fitness * 100;
             for (var j = 0; j < n; j++) {
                 this.matingpool.push(this.rockets[i]);
             }
         }
+        return target_hitters;
     }
+    
     // Selects appropriate genes for child
-    this.selection = function() {
+    this.selection = function () {
         var newRockets = [];
         for (var i = 0; i < this.rockets.length; i++) {
             // Picks random dna
@@ -61,7 +65,7 @@ function Population() {
     }
 
     // Calls for update and show functions
-    this.run = function() {
+    this.run = function () {
         for (var i = 0; i < this.popsize; i++) {
             this.rockets[i].update();
             // Displays rockets to screen
