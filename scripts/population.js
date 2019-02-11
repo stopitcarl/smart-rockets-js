@@ -54,7 +54,7 @@ function Population() {
             // Picks random dna
             var parentA = random(this.matingpool).dna;
             var parentB = random(this.matingpool).dna;
-            // Creates child by using crossover function
+            // Creates child dna by using crossover function
             var child = parentA.crossover(parentB);
             child.mutation();
             // Creates new rocket with child dna
@@ -64,7 +64,7 @@ function Population() {
         this.rockets = newRockets;
     }
 
-    // Calls for update and show functions
+    // Update rockets and show them
     this.run = function () {
         for (var i = 0; i < this.popsize; i++) {
             this.rockets[i].update();
